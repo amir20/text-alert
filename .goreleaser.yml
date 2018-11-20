@@ -2,8 +2,8 @@ before:
   hooks:
     - go mod download
 builds:
-- env:
-  - CGO_ENABLED=0
+  - env:
+      - CGO_ENABLED=0
 archive:
   replacements:
     darwin: Darwin
@@ -12,15 +12,15 @@ archive:
     386: i386
     amd64: x86_64
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 snapshot:
   name_template: "{{ .Tag }}-next"
 changelog:
   sort: asc
   filters:
     exclude:
-    - '^docs:'
-    - '^test:'
+      - "^docs:"
+      - "^test:"
 snapcraft:
   replacements:
     darwin: Darwin
@@ -29,11 +29,8 @@ snapcraft:
     386: i386
     amd64: x86_64
   publish: true
-  summary: Software to create fast and easy drum rolls.
+  summary: A command line utility that forwards stdin to Twilio for alerting.
   description: |
-    This is the best drum roll application out there.
-    Install it and awe!
+    A command line utility that forwards stdin to Twilio for alerting.
   grade: stable
   confinement: strict
-
-
