@@ -12,14 +12,9 @@ builds:
       - arm
       - arm64
       - 386
-archive:
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    386: i386
-    amd64: x86_64
-    arm64: ARM_64-bit
-    arm: ARM_32-bit
+    goarm:
+      - 6
+      - 7
 checksum:
   name_template: "checksums.txt"
 snapshot:
@@ -31,13 +26,6 @@ changelog:
       - "^docs:"
       - "^test:"
 snapcraft:
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    386: i386
-    amd64: x86_64
-    arm64: ARM_64-bit
-    arm: ARM_32-bit
   publish: true
   summary: A command line utility that forwards stdin to Twilio for alerting.
   description: |
