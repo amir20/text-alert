@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"fmt"
+	"encoding/json"
 	"log"
 	"net/http"
 	"net/url"
@@ -11,13 +11,6 @@ import (
 
 	flag "github.com/spf13/pflag"
 )
-
-func test() {
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		fmt.Println("-> " + scanner.Text())
-	}
-}
 
 var (
 	accountSid = ""
@@ -34,7 +27,6 @@ func init() {
 	flag.StringVar(&authToken, "authToken", "", "Twilio authToken")
 	flag.StringVar(&to, "to", "", "To phone number")
 	flag.StringVar(&from, "from", "", "From phone number")
-
 	flag.Parse()
 }
 
@@ -57,7 +49,12 @@ func main() {
 
 		resp, _ := client.Do(req)
 		if resp.StatusCode != 201 {
-			log.Fatalln(resp.Body)
+			var data map[string]interface{}
+			err := json.NewDecoder(resp.Body).Decode(&data)
+			if err == nil {
+				log.Fatalln(data)
+			}
+
 		}
 	}
 }
