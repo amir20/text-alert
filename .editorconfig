@@ -9,11 +9,3 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 max_line_length = 120
 
-[*.go]
-indent_size = 2
-
-[Makefile]
-indent_style = tab
-
-[package.json]
-indent_size = 1
